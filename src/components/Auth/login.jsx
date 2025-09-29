@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const Login = ({ handleLogin }) => {
+  //login->Login
   const [showPassword, setShowPassword] = useState(false);
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
