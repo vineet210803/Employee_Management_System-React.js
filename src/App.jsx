@@ -3,63 +3,67 @@ import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Dashboard/employeeDashboard";
 import AdminDashboard from "./components/Dashboard/adminDashboard";
 import { AuthContext } from "./context/AuthProvider";
-import { getLocalStorage } from "./utils/localStorage";
+import { getLocalStorage, setLocalStorage } from "./utils/localStorage";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
   const AuthData = useContext(AuthContext);
 
+  // ✅ Initialize storage on first load
   useEffect(() => {
-    if (AuthData) {
-      const userLogIn = localStorage.getItem("userLogInHai");
-      if (userLogIn) {
-        const parsedUser = JSON.parse(userLogIn);
-        setUser(parsedUser.role);
-        if (parsedUser.role === "employee") {
-          setLoggedInUserData(parsedUser.employee);
-        }
-        if (parsedUser.role === "admin") {
-          setLoggedInUserData(parsedUser.admin);
-        }
-      }
+    setLocalStorage();
+  }, []);
+
+  // ✅ Restore user session if exists
+  useEffect(() => {
+    const userLogIn = localStorage.getItem("userLogInHai");
+    if (userLogIn) {
+      const parsedUser = JSON.parse(userLogIn);
+      setUser(parsedUser.role);
+      setLoggedInUserData(
+        parsedUser.role === "employee"
+          ? parsedUser.employee
+          : parsedUser.admin
+      );
     }
   }, [AuthData]);
 
+  // ✅ Login handler
   const handleLogin = (email, password) => {
-    if (AuthData) {
-      const admin = AuthData.adminData.find(
-        (e) => email === e.email && e.password === password
+    if (!AuthData) return;
+
+    const admin = AuthData.adminData.find(
+      (e) => e.email === email && e.password === password
+    );
+    const employee = AuthData.employeesData.find(
+      (e) => e.email === email && e.password === password
+    );
+
+    if (admin) {
+      setUser("admin");
+      setLoggedInUserData(admin);
+      localStorage.setItem(
+        "userLogInHai",
+        JSON.stringify({ role: "admin", admin })
       );
-      const employee = AuthData.employeesData.find(
-        (e) => email === e.email && e.password === password
+    } else if (employee) {
+      setUser("employee");
+      setLoggedInUserData(employee);
+      localStorage.setItem(
+        "userLogInHai",
+        JSON.stringify({ role: "employee", employee })
       );
-      if (admin) {
-        setUser("admin");
-        setLoggedInUserData(admin);
-        localStorage.setItem(
-          "userLogInHai",
-          JSON.stringify({ role: "admin", admin })
-        );
-      } else if (employee) {
-        setUser("employee");
-        setLoggedInUserData(employee);
-        localStorage.setItem(
-          "userLogInHai",
-          JSON.stringify({ role: "employee", employee })
-        );
-      } else {
-        alert("Invalid user credential");
-      }
+    } else {
+      alert("Invalid user credentials!");
     }
   };
 
+  // ✅ Task update function
   const updateTask = (index, updatedTask) => {
     const updatedEmployee = { ...loggedInUserData };
-    console.log(updatedEmployee)
     updatedEmployee.tasks[index] = updatedTask;
 
-    // Recalculate task counts
     const counts = { active: 0, newTask: 0, completed: 0, failed: 0 };
     updatedEmployee.tasks.forEach((task) => {
       if (task.active) counts.active++;
