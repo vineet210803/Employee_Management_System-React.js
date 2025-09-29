@@ -33,7 +33,6 @@ const TaskItem = ({ data, updateTask }) => {
         <button onClick={() => setFilter("new")} className={getFilterButtonStyle("new")}>New Task</button>
       </div>
 
-      {/* Task Cards */}
       <div
         id='scrollbar'
         className='py-5 mt-6 flex items-start w-full gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-violet-600 scrollbar-track-transparent'

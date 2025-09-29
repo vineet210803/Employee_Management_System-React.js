@@ -2,7 +2,7 @@ const employeesData = [
   {
     id: 1,
     firstName: "Arjun",
-    email: "a@1.com",
+    email: "arjun@e.com",
     password: "123",
     taskCounts: {
       active: 2,
@@ -76,7 +76,7 @@ const employeesData = [
   {
     id: 2,
     firstName: "Sneha",
-    email: "s@2.com.com",
+    email: "sneha@e.com",
     password: "123",
     taskCounts: {
       active: 1,
@@ -130,7 +130,7 @@ const employeesData = [
   {
     id: 3,
     firstName: "Ravi",
-    email: "r@3.com.com",
+    email: "ravi@e.com",
     password: "123",
     taskCounts: {
       active: 2,
@@ -194,71 +194,22 @@ const employeesData = [
   {
     id: 4,
     firstName: "John",
-    email: "j@4.com",
+    email: "john@e.com",
     password: "123",
     taskCounts: {
-      active: 2,
-      newTask: 1,
-      completed: 1,
-      failed: 1
+      active: 0,
+      newTask: 0,
+      completed: 0,
+      failed: 0
     },
     tasks: [
-      {
-        active: false,
-        newTask: true,
-        completed: false,
-        failed: false,
-        taskTitle: "Write documentation",
-        taskDescription: "Update the project documentation",
-        taskDate: "2024-10-13",
-        category: "Documentation"
-      },
-      {
-        active: true,
-        newTask: false,
-        completed: false,
-        failed: false,
-        taskTitle: "Set up CI/CD",
-        taskDescription: "Implement continuous integration pipeline",
-        taskDate: "2024-10-11",
-        category: "DevOps"
-      },
-      {
-        active: false,
-        newTask: false,
-        completed: false,
-        failed: true,
-        taskTitle: "Server deployment",
-        taskDescription: "Failed during final deployment step",
-        taskDate: "2024-10-15",
-        category: "DevOps"
-      },
-      {
-        active: false,
-        newTask: false,
-        completed: true,
-        failed: false,
-        taskTitle: "Tool installation",
-        taskDescription: "Install analytics tools",
-        taskDate: "2024-10-12",
-        category: "Tooling"
-      },
-      {
-        active: true,
-        newTask: false,
-        completed: false,
-        failed: false,
-        taskTitle: "Conduct interview",
-        taskDescription: "Interview frontend developer candidates",
-        taskDate: "2024-10-14",
-        category: "HR"
-      }
+      
     ]
   },
   {
     id: 5,
     firstName: "Karan",
-    email: "k@5.com",
+    email: "karan@e.com",
     password: "123",
     taskCounts: {
       active: 2,
