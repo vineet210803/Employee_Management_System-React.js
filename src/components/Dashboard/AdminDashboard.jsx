@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../other/header";
+import Header from "../other/Header";
 import CreateNewTask from "../other/CreateNewTask";
 import AllTasks from "../other/AllTasks";
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ActiveTask from './ActiveTask';
-import CompleteTask from './CompleteTask';
-import FailedTask from './FailedTask';
-import Newtask from './Newtask';
+import CompleteTask from './completeTask';
+import FailedTask from './failedTask';
+import Newtask from './newtask';
 
 const TaskItem = ({ data, updateTask }) => {
   const [filter, setFilter] = useState("all");
